@@ -1,0 +1,52 @@
+"Caso Evaluado 2"
+
+def Calculosemanal(ventas):  # funcion para calcular el monto semanal
+    total = 0
+    for v in ventas:
+        total = total + v
+    return total
+
+def Ventamayor(totales):  # funcion para determinar el vendedor mayor
+    mayor = 0
+    for i in range(1, len(totales)):
+        if totales[i] > totales[mayor]:
+            mayor = i
+    return mayor
+
+dias = ["lunes","martes","miercoles","jueves","viernes"]
+
+numerovendedores = int(input("Cuantos vendedores desea ingresar: "))
+
+nombres = []
+listaVentas = []   # lista bidimensional
+totales = []
+
+# ingresar datos de cada vendedor
+for i in range(numerovendedores):
+    print("\nVendedor", i+1)
+    vendedor = input("Coloque el nombre del vendedor: ")
+    nombres.append(vendedor)
+
+    ventas = []   # ventas de este vendedor
+
+    for dia in dias:
+        monto = int(input("Ingrese el monto del dia " + dia + ": "))
+        ventas.append(monto)
+
+    listaVentas.append(ventas)
+
+    totalvendedor = Calculosemanal(ventas)
+    totales.append(totalvendedor)
+
+# determinar el mejor vendedor
+indiceMejor = Ventamayor(totales)
+
+# mostrar resultados
+print("\n========== RESULTADOS ==========")
+
+for i in range(numerovendedores):
+    print("\nVendedor:", nombres[i])
+    print("Ventas:", listaVentas[i])
+    print("Total semanal:", totales[i])
+
+print("\nEl mejor vendedor es:", nombres[indiceMejor], "con", totales[indiceMejor])
